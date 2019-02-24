@@ -18,8 +18,6 @@ export  function deleteTaskSuccess(id){
 export function deleteTask(id){
 
   return function (dispatch) {
-   debugger;
-   
    return fetch('http://localhost:3000/task/delete/'+id, {
         method: 'DELETE'  
     })
@@ -43,7 +41,6 @@ export function addTask(task){
   return function (dispatch) {
     //console.log(dispatch);
    // dispatch(beginAjaxCall());
-   debugger;
    return fetch('http://localhost:3000/task/create/' + task.title +"/" + task.description, {
         method: 'POST'
     })
@@ -51,6 +48,7 @@ export function addTask(task){
       .then(json => {
          task.id = json.message;
          task.text = task.description;
+         task.title = task.title;
         dispatch(createTaskSuccess(task));
         //return json.products;
       })

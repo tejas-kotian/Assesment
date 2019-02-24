@@ -16,29 +16,24 @@ const todos = (state = [], action) => {
             : todo
         );
        case 'LOAD_TASKS_SUCCESS':
-       debugger;
          state.todos = action.tasksNew.tasks;
          return state.todos; 
        
        case  'CREATE_TASK_SUCCESS':
-       debugger;
        return [
         ...state,
         {
           id: action.task.id,
           description:action.task.description,
           text: action.task.description,
+          title: action.task.title,
           completed: false
-        }
-
-        
+        }        
       ];
 
-      case 'DELETE_TASK_SUCCESS' :
-      debugger;
-      const newState = state.filter( val => val.id !== action.id );
-      return newState; 
-
+      case 'DELETE_TASK_SUCCESS':
+      return state.filter( val => val.id !== action.id );
+      
        default:
         return state;
     }
